@@ -1,0 +1,48 @@
+index_title=Boot Environments
+index_bootenv=Boot Environments
+index_errbeadm=The beadm program $1 was not found on your system. Maybe beadm is not installed, or your <a href='$2'>module configuration</a> is incorrect.
+index_errmountpath=The boot environments mount path is not defined, or your <a href='$2'>module configuration</a> is incorrect.
+index_errbackupdir=The boot environments backup directory is not defined, or your <a href='$2'>module configuration</a> is incorrect.
+index_version=$1
+index_modver=
+index_tasks=Tasks
+index_destroy=Destroy
+index_continue=Would you lke to continue?
+index_warning=Warning, this action will result in data loss, do you really want to continue?
+index_understand=I understand
+index_checkbox=Checkbox must be selected
+index_yes=yes
+index_success=Success!
+index_output=Output:
+index_withcmd=with command...
+index_createmsg=Creating new BE
+index_notes=Notes:
+index_notebackup=Make sure the backup directory is a permanent data location with plenty of storage space.
+index_notetasks=Some tasks such backups and restore may take some time until completes, depending on compression level and size.
+
+button_yes=yes
+button_continue=Continue
+button_create=Create
+button_activate=Activate
+button_unmount=Unmount
+button_mount=Mount
+button_rename=Rename
+button_backup=Backup
+button_restore=Restore
+button_delete=Delete
+
+blabel_newbe=Create New BE
+blabel_activate=Activate:
+blabel_unmount=Unmount:
+blabel_mount=Mount:
+blabel_rename=Rename:
+blabel_backup=Backup:
+blabel_restore=Select BE file
+blabel_delete=Destroy:
+blabel_force=Force delete selected boot environment
+
+colprop_name=Name
+colprop_active=Active
+colprop_mountdir=Mountpoint
+colprop_space=Space
+colprop_created=Created

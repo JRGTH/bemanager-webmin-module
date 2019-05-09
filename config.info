@@ -1,0 +1,12 @@
+line1=Configurable options,11
+beadm_path=Full path to beadm program,0
+be_mountpath=Full path where to mount boot environments,0
+be_backupdir=Full path where save boot environments,0
+be_compress=Backup compression method,0
+be_decompress=Restore decompress method,0
+zfs_sendparam=ZFS send extra parameters,0
+zfs_recvparam=ZFS recv extra parameters,0
+bootenv_destroy=Destructive boot environment tasks,1,1-Enabled,0-Disabled
+show_beinfo=Show boot environments information,1,1-Enabled,0-Disabled
+bootenv_tasks=Show boot environments tasks,1,1-Enabled,0-Disabled
+show_bootenv=Show boot environments tab on index page,1,1-Enabled,0-Disabled

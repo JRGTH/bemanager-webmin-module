@@ -1,0 +1,4 @@
+desc=Boot Environments
+name=Boot Environments
+longdesc_en=ZFS Boot Environments manager for Webmin
+os_support=freebsd
