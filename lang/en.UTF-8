@@ -28,7 +28,7 @@ button_activate=Activate
 button_unmount=Unmount
 button_mount=Mount
 button_rename=Rename
-button_backup=Backup
+button_backup=Save
 button_restore=Restore
 button_delete=Delete
 
