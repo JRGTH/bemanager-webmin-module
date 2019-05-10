@@ -28,15 +28,21 @@ sub check_be_root
 	my $be_root = `$config{'beadm_path'} list -H | grep ${zfsbe} | grep -wE 'NR|N'`;
 }
 
-# Gather boot environment montpoint and bootfs.
+# Get boot environment montpoint.
 sub check_be_mount
 {
 	my ($zfsbe) = @_;
 	my $be_mountcheck = `df | grep ${zfsbe}`;
 }
+
+# Get the rootfs and bootfs.
 sub get_zroot_dataset
 {
-	my $zroot_dataset = `zpool list -H -o bootfs | tr -d "-" | sed "s|/[^/]*\$||"`;
+	my $rootfs = `mount | awk '\/ \\/ \/ {print \$1}'`;
+	chomp ($rootfs);
+	my $pool = `echo '${rootfs}' | awk -F '\/' '{print \$1}'`;
+	chomp ($pool);
+	my $zroot_dataset = `zpool list -H -o bootfs '${pool}' | sed "s|/[^/]*\$||"`;
 }
 
 # List boot environments.
