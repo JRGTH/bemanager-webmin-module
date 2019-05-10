@@ -50,10 +50,10 @@ else {
 @tabs = ();
 
 if ($config{'show_bootenv'} =~ /1/) {
-	push(@tabs, [ "bootenv", "Boot Environments", "index.cgi?mode=bootenv" ]);
+	push(@tabs, [ "bootenv", "$text{'index_bootenv'}", "index.cgi?mode=bootenv" ]);
 	}
 if ($config{'show_beinfo'} =~ /1/) {
-	push(@tabs, [ "info", "Information", "index.cgi?mode=info" ]);
+	push(@tabs, [ "info", "$text{'index_beinfo'}", "index.cgi?mode=info" ]);
 	}
 
 print &ui_tabs_start(\@tabs, "mode", $in{'mode'} || $tabs[0]->[0], 1);
