@@ -36,7 +36,7 @@ sub check_be_mount
 }
 sub get_zroot_dataset
 {
-	my $zroot_dataset = `zpool list -H -o bootfs | sed "s|/[^/]*\$||"`;
+	my $zroot_dataset = `zpool list -H -o bootfs | tr -d "-" | sed "s|/[^/]*\$||"`;
 }
 
 # List boot environments.
