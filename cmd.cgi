@@ -5,14 +5,14 @@ require './bemanager-lib.pl';
 use POSIX qw(strftime);
 &ReadParse();
 
-&ui_print_header(undef, $text{'cmd_title'}, "", undef, 1, 1);
+&ui_print_header(undef, $text{'index_cmdtitle'}, "", undef, 1, 1);
 
 if ($config{'be_mountpath'}) {
 		$be_mountpoint = "$config{'be_mountpath'}/$in{'zfsbe'}_BE";
 		$be_rmdir = "&& rm -rf";
 		}
 
-print &ui_table_start($text{'cmd_title'}, "width=100%", "10", ['align=left'] );
+print &ui_table_start($text{'index_cmdtitle'}, "width=100%", "10", ['align=left'] );
 
 if ($in{'cmd'} =~ "bootenv")  {
 	my $cmd = ($config{'bootenv_tasks'} =~ /1/) ? "beadm create ".$in{'zfsbe'}."".$in{'bootenv'} : undef;

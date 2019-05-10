@@ -15,6 +15,7 @@ index_yes=yes
 index_success=Success!
 index_output=Output:
 index_withcmd=with command...
+index_cmdtitle=Issuing Command
 index_createmsg=Creating new BE
 index_notes=Notes:
 index_notebackup=Make sure the backup directory is a permanent data location with plenty of storage space.
