@@ -3,6 +3,7 @@
 ===========================================
 Version        Description
 
+0.2.6..........Code improvements.
 0.2.5..........Add missing text entries.
 0.2.4..........Improve bootfs detect and cosmetics.
 0.2.3..........Exclude items with unset bootfs.

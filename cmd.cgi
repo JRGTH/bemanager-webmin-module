@@ -84,15 +84,7 @@ elsif ($in{'cmd'} =~ "backupbe")  {
 	my $backup_date = strftime "$in{'zfsbe'}-${snap_date}", localtime;
 
 	# Check for the backup directory.
-	if ($config{'be_backupdir'}) {
-		$bakupdir = $config{'be_backupdir'};
-		unless(-e $bakupdir or mkdir $bakupdir) {
-			die "Unable to create $bakupdir\n";
-			}
-		}
-	else {
-		die "Backup directory not defined\n";
-		}
+	&create_backup_dir();
 
 	# Always take a recent snapshot of the boot environment before backup.
 	my $cmd = ($config{'bootenv_tasks'} =~ /1/) ? "zfs snapshot ${zroot_dataset}/$in{'zfsbe'}\@${snap_date} && zfs send $config{'zfs_sendparam'} ${zroot_dataset}/$in{'zfsbe'}\@${snap_date} | $config{'be_compress'} > ${bakupdir}/${backup_date}.zfs".$in{'backupbe'} : undef;

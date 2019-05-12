@@ -3,6 +3,7 @@
 
 BEGIN { push(@INC, ".."); };
 use WebminCore;
+use File::Path qw/mkpath/;
 use POSIX qw(strftime);
 &init_config();
 
@@ -43,6 +44,21 @@ sub get_zroot_dataset
 	my $pool = `echo '${rootfs}' | awk -F '\/' '{print \$1}'`;
 	chomp ($pool);
 	my $zroot_dataset = `zpool list -H -o bootfs '${pool}' | sed "s|/[^/]*\$||"`;
+}
+
+# Create backup directory.
+sub create_backup_dir
+{
+	# Check for the backup directory.
+	if ($config{'be_backupdir'}) {
+		$bakupdir = $config{'be_backupdir'};
+		unless(-e $bakupdir or mkpath $bakupdir) {
+			`mkdir -p $bakupdir`;
+			}
+		}
+	else {
+		die "Backup directory not defined\n";
+		}
 }
 
 # List boot environments.
