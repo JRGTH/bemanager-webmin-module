@@ -7,11 +7,6 @@ use POSIX qw(strftime);
 
 &ui_print_header(undef, $text{'index_cmdtitle'}, "", undef, 1, 1);
 
-if ($config{'be_mountpath'}) {
-		$be_mountpoint = "$config{'be_mountpath'}/$in{'zfsbe'}_BE";
-		$be_rmdir = "&& rm -rf";
-		}
-
 print &ui_table_start($text{'index_cmdtitle'}, "width=100%", "10", ['align=left'] );
 
 if ($in{'cmd'} =~ "bootenv")  {
@@ -33,15 +28,18 @@ elsif ($in{'cmd'} =~ "renamebe")  {
 	@footer = ("index.cgi?mode=bootenv", $text{'index_bootenv'});
 }
 elsif ($in{'cmd'} =~ "mountbe")  {
+	my $be_mountpoint = "$config{'be_mountpath'}/$in{'zfsbe'}_BE";
 	my $cmd = ($config{'bootenv_tasks'} =~ /1/) ? "beadm mount ".$in{'zfsbe'}." ${be_mountpoint} ".$in{'mountbe'} : undef;
 	$in{'confirm'} = "yes";
 	&ui_cmd($in{'mountbe'}, $cmd);
 	@footer = ("index.cgi?mode=bootenv", $text{'index_bootenv'});
 }
 elsif ($in{'cmd'} =~ "beunmount")  {
-	my $cmd = ($config{'bootenv_tasks'} =~ /1/) ? "beadm unmount ".$in{'zfsbe'}." ${be_rmdir} ${be_mountpoint} ".$in{'beunmount'} : undef;
+	my $be_mountpoint = "$config{'be_mountpath'}/$in{'zfsbe'}_BE";
+	my $cmd = ($config{'bootenv_tasks'} =~ /1/) ? "beadm unmount ".$in{'zfsbe'}."".$in{'beunmount'} : undef;
 	$in{'confirm'} = "yes";
 	&ui_cmd($in{'beunmount'}, $cmd);
+	&remove_mount_dir();
 	@footer = ("index.cgi?mode=bootenv", $text{'index_bootenv'});
 }
 elsif ($in{'cmd'} =~ "destroybe")  {

@@ -61,6 +61,18 @@ sub create_backup_dir
 		}
 }
 
+# Remove be mount directory after unmount.
+sub remove_mount_dir
+{
+	if ($config{'be_mountpath'}) {
+		my $be_mountpoint = "$config{'be_mountpath'}/$in{'zfsbe'}_BE";
+		unless( !-e $be_mountpoint or rmdir $be_mountpoint) {
+			# Fallback to external command.
+			`rm -rf $be_mountpoint`;
+			}
+		}
+}
+
 # List boot environments.
 sub list_bootenvs
 {
