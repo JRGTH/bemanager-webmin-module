@@ -4,8 +4,6 @@
 require './bemanager-lib.pl';
 &ReadParse();
 
-&ui_print_header(undef, $text{'index_title'}, "", undef, 1, 1);
-
 # List boot environments.
 if ($in{'bootenv'})
 {
