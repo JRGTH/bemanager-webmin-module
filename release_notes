@@ -3,6 +3,7 @@
 ===========================================
 Version        Description
 
+0.3.0..........Replace BE info tab with a link.
 0.2.9..........Fix BE detection issue with proper awk processing.
 0.2.8..........Remove duplicate header.
 0.2.7..........Add rmdir function and cleanup.

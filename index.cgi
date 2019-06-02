@@ -52,9 +52,9 @@ else {
 if ($config{'show_bootenv'} =~ /1/) {
 	push(@tabs, [ "bootenv", "$text{'index_bootenv'}", "index.cgi?mode=bootenv" ]);
 	}
-if ($config{'show_beinfo'} =~ /1/) {
-	push(@tabs, [ "info", "$text{'index_beinfo'}", "index.cgi?mode=info" ]);
-	}
+#if ($config{'show_beinfo'} =~ /1/) {
+#	push(@tabs, [ "info", "$text{'index_beinfo'}", "index.cgi?mode=info" ]);
+#	}
 
 print &ui_tabs_start(\@tabs, "mode", $in{'mode'} || $tabs[0]->[0], 1);
 
@@ -62,16 +62,17 @@ print &ui_tabs_start(\@tabs, "mode", $in{'mode'} || $tabs[0]->[0], 1);
 if ($config{'show_bootenv'} =~ /1/) {
 	print &ui_tabs_start_tab("mode", "bootenv");
 	&ui_list_bootenvs(undef, 1);
+	print "<a href='beinfo.cgi?'>$text{'index_beinfo'}</a>";
 	print &ui_tabs_end_tab("mode", "bootenv");
 }
 
 # Start boot environments info tab.
-if ($config{'show_beinfo'} =~ /1/) {
-	print &ui_tabs_start_tab("mode", "info");	
-	local $out = get_be_info();
-	print "<pre>$out</pre>";
-	print &ui_tabs_end_tab("mode", "info");
-}
+#if ($config{'show_beinfo'} =~ /1/) {
+#	print &ui_tabs_start_tab("mode", "info");	
+#	local $out = get_be_info();
+#	print "<pre>$out</pre>";
+#	print &ui_tabs_end_tab("mode", "info");
+#}
 
 # End tabs.
 print &ui_tabs_end(1);
