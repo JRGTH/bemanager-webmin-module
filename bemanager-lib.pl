@@ -61,6 +61,16 @@ sub create_backup_dir
 		}
 }
 
+sub check_zfs_send
+{
+	my $zfssend = `pgrep -f "zfs send"`;
+}
+
+sub check_zfs_recv
+{
+	my $zfsrecv = `pgrep -f "zfs receive"`;
+}
+
 # Remove be mount directory after unmount.
 sub remove_mount_dir
 {
@@ -187,11 +197,16 @@ return $rv;
 
 sub ui_backup_bootenv
 {
+# Disable button if there is any zfs send/recv running instance.
+if (check_zfs_send() || check_zfs_recv()) {
+	$state_bak = "disable";
+	}
+
 my ($zfsbe) = @_;
 $rv = &ui_form_start('cmd.cgi', 'post')."\n";
 $rv .= &ui_hidden('zfsbe', $zfsbe)."\n";
 $rv .= &ui_hidden('cmd', "backupbe")."\n";
-$rv .= &ui_submit("$text{'button_backup'}");
+$rv .= &ui_submit("$text{'button_backup'}", state => "${state_bak}");
 $rv .= "$text{'blabel_backup'} <i>".$zfsbe."<br />\n";
 $rv .= &ui_form_end();
 return $rv;
@@ -199,11 +214,16 @@ return $rv;
 
 sub ui_restore_bootenv
 {
+# Disable button if there is any zfs send/recv running instance.
+if (check_zfs_send() || check_zfs_recv()) {
+	$state_res = "disable";
+	}
+
 my ($zfsbe) = @_;
 $rv = &ui_form_start('cmd.cgi', 'post')."\n";
 $rv .= &ui_hidden('zfsbe', $zfsbe)."\n";
 $rv .= &ui_hidden('cmd', "restorebe")."\n";
-$rv .= &ui_submit("$text{'button_restore'}");
+$rv .= &ui_submit("$text{'button_restore'}", state => "${state_res}");
 $rv .= &ui_filebox('befile')."\n";
 $rv .= "$text{'blabel_restore'}<br />\n";
 $rv .= &ui_form_end();
