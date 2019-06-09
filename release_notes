@@ -3,6 +3,7 @@
 ===========================================
 Version        Description
 
+0.3.2..........Add missing variable escaping.
 0.3.1..........Disable button if there is any zfs send/recv running instance.
 0.3.0..........Replace BE info tab with a link.
 0.2.9..........Fix BE detection issue with proper awk processing.
