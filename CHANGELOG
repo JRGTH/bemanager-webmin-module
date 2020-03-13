@@ -3,6 +3,7 @@
 ===========================================
 Version        Description
 
+0.3.5..........Fix in backup/restore commands and improvements.
 0.3.4..........Default to backquote_command, fixes and cleanup(config changes).
 0.3.3..........Protect recently activated BE from mounting.
 0.3.2..........Add missing variable escaping.

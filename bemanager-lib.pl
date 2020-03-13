@@ -63,12 +63,16 @@ sub create_backup_dir
 
 sub check_zfs_send
 {
-	my $zfssend = &backquote_command("pgrep -f 'zfs send'");
+	my ($zfsbe) = @_;
+	my $zroot_dataset = &get_zroot_dataset();
+	my $zfssend = &backquote_command("pgrep -f ${zroot_dataset}\/$zfsbe");
 }
 
 sub check_zfs_recv
 {
-	my $zfsrecv =&backquote_command("pgrep -f 'zfs receive'");
+	my ($zfsbe) = @_;
+	my $zroot_dataset = &get_zroot_dataset();
+	my $zfsrecv =&backquote_command("pgrep -f ${zroot_dataset}\/$zfsbe");
 }
 
 # Remove be mount directory after unmount.

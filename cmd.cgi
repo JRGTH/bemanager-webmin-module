@@ -83,7 +83,7 @@ elsif ($in{'cmd'} =~ "backupbe")  {
 	&create_backup_dir();
 
 	# Always take a recent snapshot of the boot environment before backup.
-	my $cmd = ($config{'bootenv_tasks'} =~ /1/) ? "zfs snapshot ${zroot_dataset}/$in{'zfsbe'}\@${snap_date} && zfs send $config{'zfs_sendparam'} ${zroot_dataset}/$in{'zfsbe'}\@${snap_date} | xz $config{'be_compress'} > ${bakupdir}/${backup_date}.xz && zfs destroy ${zroot_dataset}/$in{'zfsbe'}@${snap_date}".$in{'backupbe'} : undef;
+	my $cmd = ($config{'bootenv_tasks'} =~ /1/) ? "zfs snapshot ${zroot_dataset}/$in{'zfsbe'}\@${snap_date} && zfs send $config{'zfs_sendparam'} ${zroot_dataset}/$in{'zfsbe'}\@${snap_date} | xz $config{'be_compress'} > ${bakupdir}/${backup_date}.xz".$in{'backupbe'} : undef;
 	$in{'confirm'} = "yes";
 	&ui_cmd($in{'backupbe'}, $cmd);
 	@footer = ("index.cgi?mode=bootenv", $text{'index_bootenv'});
@@ -94,7 +94,7 @@ elsif ($in{'cmd'} =~ "restorebe")  {
 	my $restore_date = strftime "restore-%Y-%m-%d-%H%M%S", localtime;
 	my $cmd = ($config{'bootenv_tasks'} =~ /1/) ? "xz $config{'be_decompress'} $in{'befile'} | zfs receive $config{'zfs_recvparam'} ${zroot_dataset}/${restore_date}".$in{'backupbe'} : undef;
 	$in{'confirm'} = "yes";
-	&ui_cmd($in{'backupbe'}, $cmd);
+	&ui_cmd($in{'restorebe'}, $cmd);
 	@footer = ("index.cgi?mode=bootenv", $text{'index_bootenv'});
 }
 

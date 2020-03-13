@@ -43,6 +43,7 @@ if ($in{'bootenv'})
 	print &ui_table_end();
 	print "<br><b>$text{'index_notes'}<b/><br>";
 	print "$text{'index_notebackup'}<br/>";
-	print "$text{'index_notetasks'}";
+	print "$text{'index_notetasks'}<br/>";
+	print "$text{'index_noteprocess'}";
 	&ui_print_footer('index.cgi?mode=bootenv', $text{'index_bootenv'});
 }
